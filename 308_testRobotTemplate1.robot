@@ -6,7 +6,6 @@
 Documentation   This file tests simple arithmetic operations
 # Ressource nécessaire (keywords) pour jouer les cas de test
 Resource  testRobotTemplate1-resources.robot
-Test Template   
 
 # Cas de test avec plusieurs jeux de données
 *** Test Cases ***    Var1    Var2    Expected
