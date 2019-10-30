@@ -1,11 +1,11 @@
 *** Settings ***
 # Description du test
-Documentation   This file tests simple arithmetic operations
-# Ressource nécessaire (keywords) pour jouer les cas de test
+Documentation   This file tests simple arithmetic operations with templates
+# Ressource nécessaire (mots-clef) pour jouer les cas de test
 Resource  testRobotTemplate2-resources.robot
 
-*** Test Cases *** 
 # Cas de test avec plusieurs jeux de données
+*** Test Cases *** 
 Template avec arguments (cas passant)
     [Template]    The result of ${var1} plus ${var2} should be ${expected}
     1     1	    2
