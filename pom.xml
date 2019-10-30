@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.squahstest</groupId>
+  <artifactId>sample-tf</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+<build>
+    <plugins>
+        <!-- Configuration of the Squash TA framework used by the project -->
+        <plugin>
+            <groupId>org.squashtest.ta.galaxia</groupId>
+            <artifactId>squash-tf-robotframework-runner-maven-plugin</artifactId>
+            <version>0.0.1.IT1c</version>
+            
+            <!-- Here you can add libraries to the engine classpath, using the <dependencies></dependencies> tag -->
+            <!-- A sample with the mySql jdbc driver -->
+            <!-- <dependencies> -->
+            <!--     <dependency> -->
+            <!--        <groupId>mysql</groupId> -->
+            <!--        <artifactId>mysql-connector-java</artifactId> -->
+            <!--        <version>5.1.19</version> -->
+            <!--     </dependency> -->
+            <!-- </dependencies> -->
+            
+            <!-- Under here is the Squash TA framework default configuration -->
+            <configuration>
+                
+                <!-- 
+                    Uncomment the line below in order to the build finish in success even if a test failed 
+                    (functional (assertion) failure), but fail the build if an ERROR (technical failure) occurred.
+                -->
+                <!-- <mojoSuccessThreshold>FAIL</mojoSuccessThreshold> -->
+                
+                <!-- Define a log configuration file (at log4j format) to override the one defined internally -->
+                <!-- If the given file can't be found the engine switch to the internal configuration-->
+                <logConfiguration>${logConfFile}</logConfiguration>
+                
+                <!-- Define configurers -->
+                <configurers>
+                    <configurer implementation="org.squashtest.ta.maven.TmCallBack">
+                        <endpointURL>${status.update.events.url}</endpointURL>
+                        <executionExternalId>${squash.ta.external.id}</executionExternalId>
+                        <jobName>${jobname}</jobName>
+                        <hostName>${hostname}</hostName>
+                        <endpointLoginConfFile>${squash.ta.conf.file}</endpointLoginConfFile>
+                        <reportBaseUrl>${ta.tmcallback.reportbaseurl}</reportBaseUrl>
+                        <jobExecutionId>${ta.tmcallback.jobexecutionid}</jobExecutionId>
+                        <reportName>${ta.tmcallback.reportname}</reportName>
+                    </configurer>
+                </configurers>
+            </configuration>
+            
+        </plugin>
+    </plugins>
+</build>
+
+<!-- Squash TA maven plugin repository -->
+<pluginRepositories>
+    <pluginRepository>
+    <id>org.squashtest.plugins.release</id>
+    <name>squashtest.org</name>
+    <url>http://repo.squashtest.org/maven2/releases</url>
+    <snapshots>
+    <enabled>false</enabled>
+    </snapshots>
+    <releases>
+    <enabled>true</enabled>
+    </releases>
+    </pluginRepository>
+</pluginRepositories>
+</project>
